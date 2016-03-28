@@ -1,0 +1,36 @@
+<?php
+
+$title = 'Recupera password';
+$this->headTitle($title);
+?>
+<div id = "login">
+	<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+	<?php
+	$form = $this->form;
+	$form->setAttribute('action', $this->url(
+	    'condomino',
+	    array(
+	        'action' => 'recovery',
+	        'id'     => $this->id,
+	    )
+	));
+	$form->prepare();
+
+	echo $this->form()->openTag($form);
+	?>
+
+	<p>
+		Inserisci un indirizzo email valido. Ti verrà recapitata un'email con la tua password.
+	</p>
+	<div class="form-group">
+		<?php echo $this->formRow($form->get('email')); ?>
+	</div>
+	<div class="form-group">
+		<a class = "btn" href = "javascript:history.back();">annulla</a>
+		<?php echo $this->formSubmit($form->get('send')); ?>
+	</div>
+	<?php echo $this->form()->closeTag(); ?>
+</div>
+
+

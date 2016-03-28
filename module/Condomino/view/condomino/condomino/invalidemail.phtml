@@ -1,0 +1,15 @@
+<?php
+
+$title = 'Email non trovata';
+$this->headTitle($title);
+?>
+<div id = "login">
+	<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+	<p>
+	L'indirizzo email specificato non è stato trovato.
+	</p>
+	<p>
+	    Please <a href="<?php echo $this->url('condomino', array('action'=>'recovery'));?>" class = "btn">riprova</a>
+	</p>
+</div>

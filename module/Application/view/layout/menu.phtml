@@ -1,0 +1,71 @@
+
+<?php 
+
+if($user_session->type == 'condomino')
+{ ?>
+
+    <div class="collapse navbar-collapse">
+        <div class="panel-heading">CONDOMINIO</div>
+
+        <ul class="nav nav-stacked">
+            <li><a href = "/bacheca/" <?php echo isSelected('/bacheca/'); ?>>Bacheca<br />(messaggi tra condomini)</a></li>
+            <li><a href = "/condominium/" <?php echo isSelected('/condominium/'); ?>>Dati condominio</a></li>
+            <li><a href = "/notice/" <?php echo isSelected('/notice/'); ?>>Comunicazioni dall'amministratore</a></li>
+            <li><a href = "/category/" <?php echo isSelected('/category/'). isSelected('/document/'); ?>>Documenti</a></li>
+            <li><a href = "/administrator/" <?php echo isSelected('/administrator/'); ?>>Amministratore</a></li> 
+            <li><a href = "/supplier/" <?php echo isSelected('/supplier/'); ?>>Fornitori</a></li>
+            <li><a href = "/request/" <?php echo isSelected('/request/'); ?>>Guasti e segnalazioni</a></li>
+        </ul>
+    </div>
+
+    <div class="collapse navbar-collapse">
+        <div class="panel-heading">UTENTE</div>
+        <ul class="nav nav-stacked">
+            <li><a href = "/condomino/view" <?php echo isSelected('/condomino/view'); ?>>Anagrafica</a></li>
+            <li><a href = "/condomino/password" <?php echo isSelected('/condomino/password/'); ?>>Modifica password</a></li>
+            <li><a href = "/condomino/logout" <?php echo isSelected('/condomino/logout'); ?>><?php echo $this->translate('Logout') ?></a></li>
+        </ul>
+    </div>
+
+<?php } ?>
+
+<?php if($user_session->type == 'administrator'){ ?>
+
+    <div class="collapse navbar-collapse">
+        <div class="panel-heading">CONDOMINIO</div>
+        <ul class="nav nav-stacked">
+            <li><a href = "/request/" <?php echo isSelected('/request/'); ?>>Guasti e segnalazioni</a></li>
+            <li><a href = "/bacheca/" <?php echo isSelected('/bacheca/'); ?>>Bacheca</a></li>
+            <li><a href = "/category/" <?php echo isSelected('/category/') . isSelected('/document/'); ?>>Documenti</a></li>
+            <li><a href = "/notice/" <?php echo isSelected('/notice/'); ?>>Comunicazioni dall'amministratore</a></li>
+            <li><a href = "/condominium/" <?php echo isSelected('/condominium/'); ?>>Condominio</a></li>
+            <li><a href = "/condomino/" <?php echo isSelected('/condomino/'); ?>>Utenti</a></li>
+            <li><a href = "/supplier/" <?php echo isSelected('/supplier/'); ?>>Fornitori</a></li>
+        </ul>
+        <div class="panel-heading">AMMINISTRATORE</div>
+        <ul class="nav nav-stacked">
+            <li><a href = "/administrator/view" <?php echo isSelected('/administrator/view'); ?>>Anagrafica</a></li>
+            <li><a href = "/administrator/password" <?php echo isSelected('/administrator/password'); ?>>Modifica password</a></li>
+            <li><a href = "/administrator/logout" <?php echo isSelected('/administrator/logout'); ?>><?php echo $this->translate('Logout') ?></a></li> 
+        </ul>
+    </div>
+
+<?php } ?>
+
+<?php
+function isSelected($key)
+{
+    $current_uri = $_SERVER['REQUEST_URI'];
+    $css_class = ' class = "selected"';
+    $pos = strpos($current_uri, $key);
+
+    if (false !== $pos)
+    {
+        return $css_class;
+    }
+    else
+    {
+        return '';
+    }
+}
+?>

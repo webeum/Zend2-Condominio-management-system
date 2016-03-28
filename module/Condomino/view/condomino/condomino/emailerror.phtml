@@ -1,0 +1,14 @@
+<?php
+
+$title = 'Errore email';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<p>
+Si è verificato un errore durante l'invio dell'email
+</p>
+<p>
+    Please <a href="<?php echo $this->url('condomino', array('action'=>'login'));?>" class = "btn">riprova</a>
+</p>
+

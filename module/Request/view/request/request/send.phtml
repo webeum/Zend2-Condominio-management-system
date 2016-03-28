@@ -1,0 +1,19 @@
+<?php
+$title = 'Invio segnalazione';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+	Sei sicuro di voler inviare via email la seguente segnalazione all'amministratore e il condominio?
+</p>
+
+<?php
+$url = $this->url('request', array('action' => 'send', 'id' => $this->id,));
+?>
+<form action="<?php echo $url; ?>" method="post">
+	<div>
+	    <input type = "hidden" name = "id" value = "<?php echo (int) $request->id; ?>" />
+	    <input type = "submit" name = "send" value = "Si" class = "btn" />
+	    <input type = "submit" name = "send" value = "No" class = "btn" />
+	</div>
+</form>

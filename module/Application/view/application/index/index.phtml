@@ -1,0 +1,74 @@
+<?php         
+use Zend\Session\Container;
+
+# clear session variables
+$user_session = new Container('user');
+$user_session->getManager()->getStorage()->clear(); 
+?>
+
+<div class="row">
+    <p>
+        <h1 class = "title">Gestione condomini</h1>
+    </p>
+    <p class = "sub-title">
+        Benvenuto nel sito di gestione condomini! Il nostro servizio avanzato di gestione che agevola la comunicazione tra condomini ed amministratore. 
+        Accedi al servizio con le tue credenziali o registrati per usufruire degli strumenti che abbiamo pensato per te!
+    </p>
+</div>
+
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="panel">
+            <div class="section-title">
+                <h3 class="panel-title">Sei già registrato?</h3>
+            </div>
+            <div class="panel-body">
+                <p>
+                    <img class = "img-panel"src = "/img/casetta.jpg" border = "0" align = "right" />
+                    Se hai già compilato il modulo di registrazione e hai ricevuto la conferma di attivazione, inserisci il tuo codice fiscale e la password che hai specificato al momento della registrazione e clicca sul tasto <b>login</b>.
+                </p>
+                <br />
+                <form action="/condomino/login" method="post" name="condomino" id="condomino"><input type="hidden" name="id" value="">    <div class="form-group">
+                        <label class="control-label color-label mandatory" for="username">Codice fiscale</label><input type="text" name="username" id="username" class="form-control" placeholder="Inserisci il tuo codice fiscale..." required="required" value="">  </div>
+                    <div class="form-group">
+                        <label class="control-label color-label mandatory" for="password">Password</label><input type="password" name="password" id="password" class="form-control" placeholder="Password..." required="required" value="">   </div>
+                    <div class="form-group">
+                        <label class="control-label color-label" for="remember">Ricordami</label><input type="hidden" name="remember" value="0"><input type="checkbox" name="remember" id="remember" class="checkbox" value="1">       <span class = "delimeter">&nbsp;|&nbsp;</span>
+                        <a href = "/condomino/recovery">Recupera password</a>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6"></div>
+                      <div class="col-xs-6 align-right">
+                        <input type="submit" name="submit" id="submitbutton" class="btn" value="login">
+                    </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="panel">
+            <div class="section-title">
+                <h3 class="panel-title">Non sei ancora registrato?</h3>
+            </div>
+            <div class="panel-body">
+                <p>
+                    <img class = "img-panel"src = "/img/schermate.jpg" border = "0" align = "right" />
+                    Clicca sul pulsante registrati per avere accesso in tempo reale di:
+                    <b>bacheca di condominio, avvisi e scadenze, segnalazioni guasti e problemi, documenti del condominio, lista dei fornitori.</b>
+                    <br />
+                    Compila i campi richiesti ed attendi l'email dell'amministratore che ti comunicherà l'attivazione del tuo account.
+                </p>
+                <p>
+                    <a class="btn btn-success pull-right" href="/condomino/register">Registrati</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+   
+
+</div>

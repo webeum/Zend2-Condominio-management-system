@@ -1,0 +1,97 @@
+<?php
+
+use Zend\Session\Container;
+
+$user_session = new Container('user');
+
+$title = 'Guasti e segnalazioni';
+$this->headTitle($title);
+?>
+
+<div class="form-horizontal">
+
+    <div class="row">
+      <div class="col-xs-6"><h1><?php echo $this->escapeHtml($title); ?></h1></div>
+      <div class="col-xs-6 align-right">
+        <?php if ($user_session->type == 'condomino') { ?>  
+          <a href="<?php echo $this->url('request', array('action'=>'add'));?>" class = "btn">scrivi una segnalazione</a>
+        <?php } ?>
+      </div>
+    </div>
+
+    <div class="bs-accordion">
+        <div class="panel-group" id="accordion">
+            <?php 
+            $x = 1;
+            foreach ($requests as $request) : ?>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $x;?>">
+                            <?php echo $this->escapeHtml($request->type . ' - ' . $request->object);?>
+                        </a>
+                        </h4>
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </div>
+                    <div id="collapse<?php echo $x;?>" class="<?php echo ($x == 1 ? 'panel-collapse collapse in' : 'panel-collapse collapse'); ?>">
+                        <div class="panel-body">
+                            <label for="author" class="color-label">Da:&nbsp;</label>
+                            <?php echo $this->escapeHtml($request->author);?>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="creationdate" class="color-label">Data:&nbsp;</label>
+                            <?php echo $this->escapeHtml($request->creationdate); ?>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="creationdate" class="color-label">Stato:&nbsp;</label>
+                            <?php echo $this->escapeHtml($request->status);?>
+
+                            <div class = "divider-dotted"></div>
+
+                            <?php echo $request->message;?>
+
+
+                            
+                            <div class = "divider-dotted"></div>
+
+                            <div class="form-group">
+                                <label for="message" class="col-sm-2 control-label color-label">Risposta amministratore</label>
+                                <div class="col-sm-10">
+                                    <?php echo $request->note;?>
+                                </div>
+
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <?php if($user_session->type == 'administrator') {?>
+                                      <a href="<?php echo $this->url('request', array('action'=>'send', 'id' => $request->id));?>" class = "btn">invia segnalazione</a>
+                                    <?php } ?>
+                                </div>
+                                <div class="col-xs-6 align-right">
+                                    <?php if($user_session->type == 'administrator') {?>
+                                        <a href="<?php echo $this->url('request', array('action'=>'edit', 'id' => $request->id));?>" class = "btn">modifica</a>
+                                        <a href="<?php echo $this->url('request', array('action'=>'delete', 'id' => $request->id));?>" class = "btn">elimina</a>
+                                    <?php } ?>
+                                    <?php if($user_session->type == 'condomino' && $user_session->id == $request->condomino_id) {?>
+                                        <a href="<?php echo $this->url('request', array('action'=>'edit', 'id' => $request->id));?>" class = "btn">modifica</a>
+                                        <a href="<?php echo $this->url('request', array('action'=>'delete', 'id' => $request->id));?>" class = "btn">elimina</a>                
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <?php 
+                $x = $x + 1;
+            endforeach; ?>
+        </div>
+    </div>
+
+    <div class="alert alert-danger" role="alert">
+      <strong>Attenzione!</strong>
+       L’utente è l’esclusivo responsabile per qualsiasi informazione che inserisce in questo sito; non sono ammessi contenuti che violano o infrangono in alcun modo la legge o i diritti altrui, che si tratti di minacce o diffamazioni oppure di atti abusivi che invadono la privacy di altri utenti o violino i diritti di gestione e controllo della propria immagine e identità. Sono vietati inoltre contributi di contenuto volgare, osceno, offensivo o indecente, atti a danneggiare l’immagine di terzi, e qualsiasi contenuto oppugnabile in una causa penale o civile o che dia adito a comportamenti illegali.
+    </div>
+
+</div>

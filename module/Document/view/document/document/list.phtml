@@ -1,0 +1,65 @@
+<?php
+
+use Zend\Session\Container;
+
+$user_session = new Container('user');
+
+$title = $category->name;
+$this->headTitle($title);
+?>
+
+
+
+<div class="row">
+  <div class="col-xs-6"><h1><?php echo $this->escapeHtml($title); ?></h1></div>
+  <div class="col-xs-6 align-right">
+    <a class = "btn" href = "javascript:history.back();">indietro</a>
+    <?php if ($user_session->type == 'administrator') { ?>  
+      <a href="<?php echo $this->url('document', array('action'=>'add', 'id' => $category->id));?>" class = "btn">nuovo documento</a>
+    <?php } ?>
+  </div>
+</div>
+
+
+<table class="table">
+  <tr>
+    <th>Documento</th>
+    <th>Nome file</th>
+    <!--
+    <th class = "align-center">Estensione</th>
+    -->
+    <th class = "align-center">Dimensione</th>
+    <th class = "align-center">Data</th>
+    <th></th>
+  </tr>
+    <?php foreach ($documents as $document) : ?>
+        <tr>
+    	    <td>
+            <span class="glyphicon glyphicon-file" aria-hidden="true"></span>&nbsp;
+            <a href="<?php echo $this->url('document', array('action'=>'view', 'id' => $document->id));?>"><?php echo $this->escapeHtml($document->name);?></a>
+            </td>
+          <td><?php echo $this->escapeHtml($document->filename);?></td>
+          <!--
+          <td class = "align-center"><?php //echo $this->escapeHtml($document->mime);?></td>
+          -->
+          <td class = "align-center"><?php echo $this->escapeHtml($document->size);?> byte</td>
+          <td class = "align-center"><?php echo $this->escapeHtml(date('d-m-Y', strtotime($document->modifydate)));?></td>
+          <td>
+              <?php if ($user_session->type == 'administrator') { ?>  
+                <a href="<?php echo $this->url('document', array('action'=>'edit', 'id' => $document->id));?>" class = "btn">modifica</a>
+                <a href="<?php echo $this->url('document', array('action'=>'delete', 'id' => $document->id));?>" class = "btn">elimina</a>
+              <?php } else { ?>
+                <a href="<?php echo $this->url('document', array('action'=>'view', 'id' => $document->id));?>">
+                <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
+                </a>
+              <?php } ?>
+
+          </td>
+        </tr>
+    <?php endforeach; ?>
+
+</table>
+
+
+
+

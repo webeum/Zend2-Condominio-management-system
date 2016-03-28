@@ -1,0 +1,16 @@
+<?php
+
+$title = 'Password inviata!';
+$this->headTitle($title);
+?>
+<div id = "login">
+	<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+	<p>
+	La tua password è stata inviata all'indirizzo email da te specificato. 
+	</p>
+	<p>
+	    <a href="<?php echo $this->url('condomino', array('action'=>'login'));?>" class = "btn">login</a>
+	</p>
+</div>
+

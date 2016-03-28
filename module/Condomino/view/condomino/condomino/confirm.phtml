@@ -1,0 +1,14 @@
+<?php
+
+$title = 'Congratulazioni!';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<p>
+Registrazione completata con successo. L'amministratore di sistema provvederà ad attivare il suo profilo. 
+</p>
+<p>
+    <a href="<?php echo $this->url('condomino', array('action'=>'login'));?>" class = "btn">login</a>
+</p>
+

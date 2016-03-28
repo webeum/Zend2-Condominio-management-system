@@ -1,0 +1,22 @@
+<?php
+
+$title = 'Elimina amministratore';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<p>Sei sicuro di voler cancellare l'amministratore '<?php echo $this->escapeHtml($administrator->firstname); ?> <?php echo $this->escapeHtml($administrator->lastname); ?>'?
+</p>
+<?php
+$url = $this->url('administrator', array(
+    'action' => 'delete',
+    'id'     => $this->id,
+));
+?>
+<form action="<?php echo $url; ?>" method="post">
+<div>
+    <input type="hidden" name="id" value="<?php echo (int) $administrator->id; ?>" />
+    <input type="submit" name="del" value = "Si" class = "btn" />
+    <input type="submit" name="del" value = "No" class = "btn" />
+</div>
+</form>

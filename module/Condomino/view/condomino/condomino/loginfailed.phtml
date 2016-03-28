@@ -1,0 +1,15 @@
+<?php
+
+$title = 'Login fallita';
+$this->headTitle($title);
+?>
+<div id = "login">
+	<h1><?php echo $this->escapeHtml($title); ?></h1>
+	<p>
+	Le credenziali specificate non sono state trovate oppure non sono state ancora attivate!
+	</p>
+	<p>
+	    <a href="<?php echo $this->url('condomino', array('action'=>'login'));?>" class = "btn">riprova</a>
+	</p>
+</div>
+

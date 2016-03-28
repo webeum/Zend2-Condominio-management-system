@@ -1,0 +1,137 @@
+<?php 
+use Zend\Session\Container;
+
+$user_session = new Container('user');
+
+if(isset($_POST['current_condominium'])) 
+    $user_session->condominium_id = $_POST['current_condominium'];
+/*
+echo $_SERVER['REQUEST_URI'];
+echo $user_session->type;
+echo $user_session->id;
+echo $user_session->condominium_id;
+echo $user_session->condominium_name;
+*/
+
+?>
+<?php echo $this->doctype(); ?>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <?php echo $this->headTitle('Condomini EXE Immobiliare'. $this->translate(''))->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?php echo $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ?>
+
+        <!-- Le styles -->
+        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+                        ->prependStylesheet($this->basePath() . '/css/style.css')
+                        ->prependStylesheet($this->basePath() . '/css/bootstrap-theme.min.css')
+                        ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css') ?>
+
+        <!-- Scripts -->
+        <?php echo $this->headScript()
+            ->prependFile($this->basePath() . '/js/bootstrap.min.js')
+            ->prependFile($this->basePath() . '/js/jquery.min.js')
+            ->prependFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+            ->prependFile($this->basePath() . '/js/html5shiv.js',   'text/javascript', array('conditional' => 'lt IE 9',))
+        ; ?>
+
+
+        <?php 
+        echo $this->headScript()->appendFile($this->basePath() . '/js/ckeditor/ckeditor.js')
+                        ->appendFile($this->basePath() . '/js/ckeditor/adapters/jquery.js')
+                        ->appendFile($this->basePath() . '/js/condominio.js');
+        ?>
+    </head>
+    <body>
+        <div class = "case">
+
+            <div id = "header">
+                <div class = "logo">
+                    <a href="<?php echo ($user_session->type == '' ? '/' : '/' . $user_session->type .'/home'); ?>">
+                        <img src = "/img/logoExe.png" alt = "Condomini Exe Immobiliare" />
+                    </a>
+                </div>
+            </div>
+            
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    
+                </div>
+            </nav>
+
+            <div id = "sub-header">
+                <div class = "left">
+                    Benvenuto <strong><?php if($user_session->username != '') echo $user_session->username; ?></strong>
+                    <?php if ($user_session->type != '') { ?>
+                        &nbsp;(<?php echo $user_session->type == 'administrator' ? 'Amministratore' : 'Condomino' ?>)
+                    <?php } ?>
+                    
+                </div>
+                <div class = "right">
+                    <?php if(count($this->condominiums) > 0) {?>
+                        <?php include 'selector.phtml'; ?>
+                    <?php } ?>
+                </div>
+            </div>
+
+            <!--<nav class="navbar navbar-default" role="navigation">-->
+
+            <?php if(count($this->condominiums) == 0 || $user_session->type == ''){ ?>
+                <div id = "body">
+                    <?php echo $this->content; ?>
+                </div>
+            <?php } else { ?>
+                <div class = "row">
+                    <div class="col-md-3">
+                        <div id = "menu">
+                            <?php include 'menu.phtml'; ?>
+                        </div>
+                    </div>                
+                    <div class="col-md-9">
+                        <div id = "body">
+                            <?php echo $this->content; ?>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+
+            <!--</nav>-->
+            
+
+            <footer>
+                <p>
+                    Exe Immobiliare S.n.c. - Partita IVA e codice fiscale 06852220968<br/>
+                    Sede legale Via Legioni Romane, 28 - 20147 Milano | Filiale Via Gravellone 37 - 27028 San Martino Siccomario (PV) 
+                    <br/>
+                    &copy; 2014 - <?php echo date('Y') ?> <?php echo $this->translate('All rights reserved.') ?>
+                </p>
+            </footer>
+
+            <?php echo $this->inlineScript() ?>
+
+        </div>
+
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-59783161-1', 'auto');
+          ga('send', 'pageview');
+
+        </script>    
+            
+    </body>
+</html>

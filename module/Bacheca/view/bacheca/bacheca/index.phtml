@@ -1,0 +1,82 @@
+<?php
+
+use Zend\Session\Container;
+use Common\Security;
+
+$user_session = new Container('user');
+
+$title = 'Bacheca di condominio';
+$this->headTitle($title);
+
+$security = new Security(); 
+?>
+
+<div class="form-horizontal">
+
+    <div class="row">
+      <div class="col-xs-6"><h1><?php echo $this->escapeHtml($title); ?></h1></div>
+      <div class="col-xs-6 align-right">
+        <?php if ($user_session->type == 'condomino') { ?>  
+          <a href="<?php echo $this->url('bacheca', array('action'=>'add'));?>" class = "btn">scrivi in bacheca</a>
+        <?php } ?>
+      </div>
+    </div>
+
+    <div class="bs-accordion">
+        <div class="panel-group" id="accordion">
+            <?php $x = 1;
+            foreach ($messages as $message) : ?>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $x;?>">
+                            <?php echo $this->escapeHtml($message->object);?>
+                        </a>
+                        </h4>
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </div>
+                    <div id="collapse<?php echo $x;?>" class="<?php echo ($x == 1 ? 'panel-collapse collapse in' : 'panel-collapse collapse'); ?>">
+                        <div class="panel-body">
+                            <label for="author" class="color-label">Da:</label>
+                            <?php echo $this->escapeHtml($message->author);?>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="author" class="color-label">Data:</label>
+                            <?php echo $this->escapeHtml($message->creationdate); ?>
+
+                            <div class ="divider-dotted"></div>
+
+                            <?php echo $message->message;?>
+
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <?php if($user_session->type == 'condomino' && $user_session->id == $message->condomino_id) {?>
+                                        <a href="<?php echo $this->url('bacheca', array('action'=>'send', 'id' => $message->id));?>"class = "btn">invia email al condominio</a>
+                                    <?php } ?>
+                                </div>
+                                <div class="col-xs-6 align-right">
+                                    <?php if($user_session->type == 'administrator') {?>
+                                        <a href="<?php echo $this->url('bacheca', array('action'=>'delete', 'id' => $message->id));?>"class = "btn">elimina</a>
+                                    <?php } ?>
+                                    <?php if($user_session->type == 'condomino' && $user_session->id == $message->condomino_id) {?>
+                                        <a href="<?php echo $this->url('bacheca', array('action'=>'edit', 'id' => $message->id));?>"class = "btn">modifica</a>
+                                        <a href="<?php echo $this->url('bacheca', array('action'=>'delete', 'id' => $message->id));?>"class = "btn">elimina</a>         
+                                    <?php } ?>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            <?php $x = $x + 1;
+            endforeach; ?>
+        </div>
+    </div>
+
+    <div class="alert alert-danger" role="alert">
+      <strong>Attenzione!</strong>
+       L’utente è l’esclusivo responsabile per qualsiasi informazione che inserisce in questo sito; non sono ammessi contenuti che violano o infrangono in alcun modo la legge o i diritti altrui, che si tratti di minacce o diffamazioni oppure di atti abusivi che invadono la privacy di altri utenti o violino i diritti di gestione e controllo della propria immagine e identità. Sono vietati inoltre contributi di contenuto volgare, osceno, offensivo o indecente, atti a danneggiare l’immagine di terzi, e qualsiasi contenuto oppugnabile in una causa penale o civile o che dia adito a comportamenti illegali.
+    </div>
+  
+</div>

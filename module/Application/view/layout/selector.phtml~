@@ -1,0 +1,43 @@
+
+<?php 
+
+if($user_session->id > 0)
+{
+/*
+    if(isset($_POST['current_condominium'])) 
+        $user_session->condominium_id = $_POST['current_condominium'];
+*/
+    ?>
+    <div> 
+        <form method = "post" action = "<?php echo ($user_session->type == 'condomino' ? '/condomino/home' : '/administrator/home'); /*$_SERVER['REQUEST_URI']*/;?>">
+            <?php if($user_session->type != '' && $user_session->type == 'administrator'){ ?>
+                <div class = "add-condominium">
+                    <a href="<?php echo $this->url('condominium', array('action'=>'add'));?>">Aggiungi condominio</a><span class = "delimeter">|</span>
+                </div>
+            <?php } ?>
+            <span class = "label-condominium">
+                CONDOMINIO:
+            </span>
+            <?php 
+            echo "<select id = \"current_condominium\" name = \"current_condominium\" onchange= \"submit();\">";
+
+            $i = 0;
+            foreach($this->condominiums as $key => $value)
+            {
+                if(!isset($user_session->condominium_id))
+                {
+                    if($i == 0) 
+                        $user_session->condominium_id = $key;                                              
+                }
+
+                if($user_session->condominium_id == $key)
+                    $user_session->condominium_name = $value;
+
+                echo "<option value = \"$key\"" . ($user_session->condominium_id == $key ? "selected" : "") . ">$value</option>";
+                $i++;
+            }
+            echo "</select>";
+            ?>
+        </form>
+    </div>
+<?php } ?>

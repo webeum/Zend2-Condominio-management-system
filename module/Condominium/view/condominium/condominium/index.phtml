@@ -1,0 +1,93 @@
+<?php
+
+use Zend\Session\Container;
+
+$user_session = new Container('user');
+
+$title = $condominium->name;
+$this->headTitle($title);
+?>
+
+<div class="row">
+  <h1><?php echo $this->escapeHtml($title); ?></h1>
+</div>
+
+<form class="form-horizontal" role="form">
+
+<?php if (file_exists('./img/condominium/' . base64_encode('picture_' . $condominium->id) . '.jpeg')) {?>
+  <div class="form-group">
+    <div class="col-sm-10">
+      <img src = "/img/condominium/<?php echo base64_encode('picture_' . $condominium->id) . '.jpeg' ;?>" />
+    </div>
+  </div>
+<?php } ?>
+
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label color-label">Indirizzo</label>
+    <div class="col-sm-10">
+      <?php echo $condominium->address; ?>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label color-label">Unità immobiliari</label>
+    <div class="col-sm-10">
+      <?php echo $condominium->properties; ?>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label color-label">Condomini</label>
+    <div class="col-sm-10">
+      <?php echo $condominium->tenants; ?>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label color-label">Consiglieri</label>
+    <div class="col-sm-10">
+      <?php $x = 1;
+      foreach ($adviser as $adv) : ?>
+        <?php echo ($x > 1 ? ', ' : '') . $adv->firstname . ' ' .$adv->lastname; ?>
+      <?php $x = $x + 1;
+      endforeach; ?>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label color-label">Registrati</label>
+    <div class="col-sm-10">
+      <?php echo $registered; ?>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label color-label">Cod.Fiscale</label>
+    <div class="col-sm-10">
+      <?php echo $condominium->fiscalcode; ?>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label color-label">Gestione</label>
+    <div class="col-sm-10">
+      <?php echo $condominium->fiscalperiodstart; ?>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label color-label">Rif. bancari</label>
+    <div class="col-sm-10">
+      <?php echo $condominium->bankreference; ?>
+    </div>
+  </div>
+ 
+  <?php if ($user_session->type == 'administrator') { ?>
+    <div class="form-group">
+      <a href="<?php echo $this->url('condominium', array('action'=>'edit', 'id' => $condominium->id));?>" class = "btn">modifica</a>
+      <!--
+      <a href="<?php //echo $this->url('condominium', array('action'=>'delete', 'id' => $condominium->id));?>" class = "btn">elimina</a>-->
+    </div>
+  <?php } ?>  
+
+</form>

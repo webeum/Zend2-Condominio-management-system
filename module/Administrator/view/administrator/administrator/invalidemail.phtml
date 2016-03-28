@@ -1,0 +1,14 @@
+<?php
+
+$title = 'Email not found';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<p>
+Email not found!
+</p>
+<p>
+    Please <a href="<?php echo $this->url('administrator', array('action'=>'recovery'));?>">retry</a>
+</p>
+

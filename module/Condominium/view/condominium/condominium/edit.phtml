@@ -1,0 +1,68 @@
+<?php
+
+$title = 'Modifica condominio';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url(
+    'condominium',
+    array(
+        'action' => 'edit',
+        'id'     => $this->id,
+    )
+));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id'));
+?>
+
+<div class="form-group">
+	<?php echo $this->formRow($form->get('name')); ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('picture')); ?>
+</div>
+<?php if (file_exists('./img/condominium/' . base64_encode('picture_' . $this->id) . '.jpeg')) {
+	$url = $this->url('condominium', array(
+    	'action' => 'resetpicture',
+    	'id'     => $this->id,
+	));?>
+<div class="form-group">
+	<a class = "btn" href = "<?php echo $url; ?>">elimina immagine</a>
+</div>
+<?php } ?>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('address')); ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('properties')); ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('tenants')); ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('fiscalcode')); ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('fiscalperiodstart')); ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('bankreference')); ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('creationdate')); ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('modifydate')); ?>
+</div>
+<div class="form-group">
+	<a class = "btn" href = "javascript:history.back();">annulla</a>
+	<?php echo $this->formSubmit($form->get('submit')); ?>
+</div>
+<?php echo $this->form()->closeTag(); ?>
+
+

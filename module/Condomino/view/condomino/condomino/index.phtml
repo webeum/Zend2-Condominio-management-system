@@ -1,0 +1,34 @@
+<?php
+
+$title = 'Condomini';
+$this->headTitle($title);
+?>
+
+<div class="row">
+<div class="col-xs-6"><h1><?php echo $this->escapeHtml($title); ?></h1></div>
+<div class="col-xs-6 align-right">
+  <a href="<?php echo $this->url('condomino', array('action'=>'add'));?>" class = "btn">inserisci condomino</a>
+</div>
+</div>
+
+<table class="table">
+<tr>
+    <th>ID</th>
+    <th>Nome</th>
+    <th>Cognome</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($condominos as $condomino) : ?>
+    <tr>
+        <td><?php echo $this->escapeHtml($condomino->id);?></td>
+        <td><?php echo $this->escapeHtml($condomino->firstname);?></td>
+        <td><?php echo $this->escapeHtml($condomino->lastname);?></td>
+        <td>
+            <a href="<?php echo $this->url('condomino',
+                array('action'=>'edit', 'id' => $condomino->id));?>" class = "btn">modifica</a>
+            <a href="<?php echo $this->url('condomino',
+                array('action'=>'delete', 'id' => $condomino->id));?>" class = "btn">elimina</a>
+        </td>
+    </tr>
+<?php endforeach; ?>
+</table>

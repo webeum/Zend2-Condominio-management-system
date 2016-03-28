@@ -1,0 +1,22 @@
+<?php
+
+$title = 'Elimina condomino';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<p>Sei sicuro di voler cancellare il condomino '<?php echo $this->escapeHtml($condomino->firstname); ?> <?php echo $this->escapeHtml($condomino->lastname); ?>'?
+</p>
+<?php
+$url = $this->url('condomino', array(
+    'action' => 'delete',
+    'id'     => $this->id,
+));
+?>
+<form action="<?php echo $url; ?>" method="post">
+<div>
+    <input type="hidden" name="id" value="<?php echo (int) $condomino->id; ?>" />
+    <input type="submit" name="del" value = "Si" class = "btn" />
+    <input type="submit" name="del" value = "No" class = "btn" />
+</div>
+</form>

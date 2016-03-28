@@ -1,0 +1,75 @@
+<?php
+
+use Zend\Session\Container;
+use Common\Security;
+
+$user_session = new Container('user');
+
+$title = 'Comunicazioni';
+$this->headTitle($title);
+
+$security = new Security(); 
+?>
+
+<div class="form-horizontal">
+
+    <div class="row">
+      <div class="col-xs-6"><h1><?php echo $this->escapeHtml($title); ?></h1></div>
+      <div class="col-xs-6 align-right">
+        <?php if ($user_session->type == 'administrator') { ?>  
+          <a href="<?php echo $this->url('notice', array('action'=>'add'));?>" class = "btn">scrivi un avviso</a>
+        <?php } ?>
+      </div>
+    </div>
+
+    <div class="bs-accordion">
+        <div class="panel-group" id="accordion">
+            <?php $x = 1;
+            foreach ($messages as $message) : ?>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $x;?>">
+                            <?php echo $this->escapeHtml($message->object); ?>
+                        </a>
+                        </h4>
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </div>
+                    <div id="collapse<?php echo $x;?>" class="<?php echo ($x == 1 ? 'panel-collapse collapse in' : 'panel-collapse collapse'); ?>">
+                        <div class="panel-body">
+                            <label for="author" class="color-label">Da:</label>
+                            <?php echo $this->escapeHtml($message->author);?>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="author" class="color-label">Data:</label>
+                            <?php 
+                            $creationDate = new DateTime($message->creationdate);
+                            echo $this->escapeHtml($creationDate->format('d-m-Y H:i:s')); 
+                            ?>
+
+                            <div class ="divider-dotted"></div>
+
+                            <?php echo $message->message;?>
+
+                            <?php if($user_session->type == 'administrator' && $user_session->id == $message->administrator_id) {?>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <a href="<?php echo $this->url('notice', array('action'=>'send', 'id' => $message->id));?>"class = "btn">invia email al condominio</a>
+                                    </div>
+                                    <div class="col-xs-6 align-right">
+                                        <a href="<?php echo $this->url('notice', array('action'=>'edit', 'id' => $message->id));?>"class = "btn">modifica</a>
+                                        <a href="<?php echo $this->url('notice', array('action'=>'delete', 'id' => $message->id));?>"class = "btn">elimina</a>         
+                                    </div>
+                                </div>
+                            <?php } ?>
+
+                        </div>
+                    </div>
+                </div>
+
+            <?php $x = $x + 1;
+            endforeach; ?>
+        </div>
+    </div>
+
+</div>

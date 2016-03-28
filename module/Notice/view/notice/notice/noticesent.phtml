@@ -1,0 +1,14 @@
+<?php
+
+$title = 'Invio comunicazione';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<p>
+Il messaggio d'avviso' è stato inviato con successo!
+</p>
+<p>
+    <a href="<?php echo $this->url('notice', array('action'=>'index'));?>" class = "btn">ok</a>
+</p>
+

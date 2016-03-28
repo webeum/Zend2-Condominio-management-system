@@ -1,0 +1,527 @@
+@import url(http://fonts.googleapis.com/css?family=Domine);
+
+html 
+{
+  height: 100%;
+}
+
+body 
+{
+    /*padding-top: 100px;*/
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    color:#333;
+    margin:0 auto;
+    background-image: url(../img/bgPage.jpg);
+    background-repeat:repeat;
+    background-position: top center;
+    height:100%;
+    line-height: 1.1;
+}
+
+h1 
+{
+  font-family: "Domine";
+  font-size: 160%;
+  letter-spacing: 0em;
+  text-transform: uppercase;
+  color:#e15d2f;
+  display: inline;
+  line-height: 50px;
+}
+
+h1.title
+{
+  font-family: "Domine";
+  font-size: 250%;
+  letter-spacing: 0em;
+  text-transform: uppercase;
+  color:#89a9a0;
+  display: inline;
+  line-height: 50px;
+}
+
+h2 
+{
+  font-family: "Domine";
+  font-size: 120%;
+  letter-spacing: 0em;
+  text-transform: uppercase;
+  color:#e15d2f;
+}
+
+h3
+{
+  font-size: 130%;
+  font-family: "Domine";
+}
+
+h4 
+{
+  display: inline;
+}
+
+.sub-title
+{
+  color:#333;
+  font-size: 170%;
+  line-height: 30px;
+  margin: 12px 0px 25px 0px;
+  padding-right: 10px;
+}
+
+legend 
+{
+  color:#e15d2f;
+}
+
+.case
+{
+  background-color: #fff;
+  max-width:980px;
+  margin:0 auto;
+}
+
+.navbar
+{
+  max-width:980px;
+  margin:0 auto;
+}
+
+#header
+{
+  max-width:980px;
+  min-height: 174px;
+  margin:0 auto;
+  background-color: #fff;
+  background-image:url(../img//head.jpg);
+  background-repeat: no-repeat;
+  background-position: right top;
+}
+
+@media(max-width:380px){
+
+  span.label-condominium 
+  {
+    display: none;
+  }
+
+}
+
+@media(max-width:768px){
+  #header
+  {
+    max-width:980px;
+    min-height: 50px;
+    margin:0 auto;
+    background-color: #fff;
+    background-image:none;
+    /*position:fixed;*/
+    position: absolute 0px;
+    width:100%;
+    z-index: 1000;
+    display:block;
+  }
+  .logo 
+  {
+
+        
+  }
+  .logo img 
+  { 
+    margin:0px;
+    padding: 5px 0px 2px 10px; 
+    width:200px;
+  }
+  #sub-header
+  {
+    top:50px;
+    /*position:fixed;*/
+    position: absolute 0px;
+    width:100%;
+    z-index: 1000;
+    border-radius: 0px 0px 0 0;
+    border-bottom: 0px;
+  }
+  #sub-header .left
+  {
+    display: none;
+  }
+  
+  #sub-header .center
+  {
+    display: none;
+  }
+
+  .col-md-9 
+  {
+    margin-top:10px;
+  }
+
+  #login, #register 
+  {
+    padding-top:105px;
+  }
+
+  footer
+  {
+    min-height: 80px;
+  }
+}
+
+@media(min-width:768px)
+{
+  .logo 
+  {
+      padding: 45px 0px 0px 20px;   
+  }
+
+}
+
+.col-md-3
+{
+  min-height: 100% !important;
+}
+
+#menu
+{
+  font-family: "Domine";
+  font-size: 100%;
+  letter-spacing: 0em;
+  background-color:#89a9a0;
+  color:#fff;
+  /*min-height: 100% !important;*/
+  clear:both;
+}
+
+#menu .panel-heading 
+{
+  font-size: 150%;
+  background-color: #e15d2f;
+}
+
+#menu li 
+{
+  border-bottom: solid 1px #fff;
+}
+
+#menu a 
+{
+  background-color:#89a9a0;
+  color:#fff;
+  text-decoration: none;
+  text-transform:uppercase;
+}
+
+#menu a:hover
+{
+  color:#fff;
+  text-decoration: underline;
+}
+
+#menu .selected 
+{
+  font-weight: bold;
+  background-color: #6b8b82;
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.nav-stacked>li+li 
+{
+  margin-top: 0;
+  margin-left: 0;
+}
+
+#body
+{
+  letter-spacing: 0em;
+  margin:0px 10px 0px 20px;
+}
+
+#login
+{
+  width:400px;
+  margin:0 auto;
+}
+
+#current_condominium
+{
+  background-color: #fff;
+  padding:2px;
+  min-width: 220px;
+}
+
+footer
+{
+  /*margin-top:20px;*/
+  padding-top:5px;
+  background-color: #6b8b82;
+  height: 60px;
+  color:#fff;
+  text-align: center;
+  vertical-align: middle;
+  line-height:1.5em;
+  font-size:11px;
+}
+
+#sub-header
+{
+  max-width:980px;
+  margin:0 auto;
+  padding:0px 7px 0px 7px;
+  background-color: #6b8b82;
+  height: 40px;
+  border-radius: 10px 10px 0 0;
+  border-bottom: 2px dashed #fff;
+}
+#sub-header .left 
+{
+  float:left;
+  line-height:2.6em;
+  color:#fff;
+  margin-left:10px;
+}
+#sub-header .add-condominium 
+{
+  display: inline;
+}
+
+#sub-header a
+{
+  color:#fff;
+}
+
+#sub-header .right 
+{
+ float:right;
+ line-height:2.6em;
+ color:#fff;
+ margin-right:10px;
+}
+
+
+#sub-header .delimeter 
+{
+  margin-left:15px;
+  margin-right:15px;
+  color:#fff;
+  font-weight: bold;
+}
+
+.wrapper
+{
+  max-width:980px;
+  margin:0 auto;
+  background-color: #fff;
+  display:block;
+}
+
+.zf-green {
+    color: #68b604;
+}
+
+.btn-success 
+{
+  background-color: #6b8b82;
+  background-image: -moz-linear-gradient(top, #89a9a0, #6b8b82);
+  background-image: -ms-linear-gradient(top, #89a9a0, #6b8b82);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#89a9a0), to(#6b8b82));
+  background-image: -webkit-linear-gradient(top, #89a9a0, #6b8b82);
+  background-image: -o-linear-gradient(top, #89a9a0, #6b8b82);
+  background-image: linear-gradient(top, #89a9a0, #6b8b82);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#89a9a0', endColorstr='#6b8b82', GradientType=0);
+}
+
+.btn-success:hover,
+.btn-success:active,
+.btn-success.active,
+.btn-success.disabled,
+.btn-success[disabled] 
+{
+  background-color: #6b8b82;
+}
+
+.btn-success:active, .btn-success.active 
+{
+  background-color: #6b8b82;
+}
+
+.btn 
+{
+  color: #ffffff;
+  padding: 5px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 0px none !important;
+  background: #6b8b82;
+
+  /*
+  background: #89a9a0;
+  background-image: -webkit-linear-gradient(top, #89a9a0, #6b8b82);
+  background-image: -moz-linear-gradient(top, #89a9a0, #6b8b82);
+  background-image: -ms-linear-gradient(top, #89a9a0, #6b8b82);
+  background-image: -o-linear-gradient(top, #89a9a0, #6b8b82);
+  background-image: linear-gradient(to bottom, #89a9a0, #6b8b82);
+  -webkit-border-radius: 4;
+  -moz-border-radius: 4;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 6px 15px 6px 15px;
+  text-decoration: none;
+  */
+}
+
+.btn:hover 
+{
+  color: #ffffff;
+  background: #89a9a0;
+  background-image: -webkit-linear-gradient(top, #89a9a0, #89a9a0);
+  background-image: -moz-linear-gradient(top, #89a9a0, #89a9a0);
+  background-image: -ms-linear-gradient(top, #89a9a0, #89a9a0);
+  background-image: -o-linear-gradient(top, #89a9a0, #89a9a0);
+  background-image: linear-gradient(to bottom, #89a9a0, #89a9a0);
+  text-decoration: none;
+}
+
+a
+{
+  color:#6b8b82;
+  text-decoration: none;
+}
+
+a:hover
+{
+  color:#89a9a0;
+  text-decoration: underline;
+}
+
+th
+{
+  font-weight: bold;
+  color:#6b8b82;
+  text-transform: uppercase;
+}
+
+.color-label
+{
+  color:#6b8b82;
+}
+.mandatory:after
+{
+  content:"*";
+  color:red;
+}
+
+.align-left { text-align: left; }
+.align-center { text-align: center; }
+.align-right { text-align: right; }
+
+
+input[type="radio"],input[type="checkbox"] 
+{
+  margin: 0px 10px;
+  line-height: normal;
+  display: inline;
+}
+
+.divider-solid
+{
+  margin:15px 0px 30px 0px;
+  width:100%;
+  border-top: solid 1px #89a9a0;
+  height:1px;
+}
+.divider-dotted
+{
+  margin:6px 0px 12px 0px;
+  width:100%;
+  border-top: dotted 1px #89a9a0;
+  height:1px;
+}
+
+.align-left
+{
+  padding:6px 0px 6px 0px;
+  text-align: left;
+}
+.align-center
+{
+  text-align: center; 
+}
+.align-right
+{
+  text-align: right;
+  padding:6px 0px 6px 0px;
+}
+
+.glyphicon 
+{
+  color:#6b8b82;
+}
+
+.delimeter 
+{
+  margin-left:10px;
+  margin-right:10px;
+  color:#6b8b82;
+}
+
+.bs-accordion 
+{
+  margin: 20px 0px 20px 0px;
+}
+
+.panel-default
+{
+  margin:5px;
+}
+
+.panel-heading a:link
+{
+  text-decoration: none;
+}
+.panel-heading span 
+{
+  float: right;
+}
+
+.bs-accordion .panel-default
+{
+  margin-top: -10px;
+  margin-left: 0px;
+}
+
+.section-title
+{
+  font-family: "Domine";
+  font-size: 100%;
+  margin: 0 auto;
+  margin: 0px 5px 0px 5px;
+  padding: 11px 9px 0px 11px;
+  background-color: #6b8b82;
+  color:#fff;
+  height: 40px;
+  border-radius: 7px 7px 7px 7px;
+  text-transform: uppercase;
+}
+
+.panel-body p
+{
+  line-height: 21px;
+}
+
+.img-panel
+{
+  margin-left:20px;
+}
+
+button.navbar-toggle
+{
+  /*position: absolute 0px !important;*/
+  position:relative;
+}
+    
+    

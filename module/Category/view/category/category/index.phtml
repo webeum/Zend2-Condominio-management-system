@@ -1,0 +1,68 @@
+<?php
+
+use Zend\Session\Container;
+
+$user_session = new Container('user');
+
+$title = 'Categorie documenti';
+$this->headTitle($title);
+?>
+
+
+  <div class="row">
+    <div class="col-xs-6"><h1><?php echo $this->escapeHtml($title); ?></h1></div>
+    <div class="col-xs-6 align-right">
+      <?php if ($user_session->type == 'administrator') { ?>  
+        <a href="<?php echo $this->url('category', array('action'=>'add'));?>" class = "btn">nuova categoria</a>
+      <?php } ?>
+    </div>
+  </div>
+
+<?php if ($user_session->type == 'administrator') { ?>
+  
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Categorie</th>
+            <th class = "align-center">Ordinamento</th>
+            <th>&nbsp;</th>
+        </tr>
+        <?php foreach ($categories as $category) : ?>
+            <tr>
+              <td><?php echo $this->escapeHtml($category->id);?></td>
+        	    <td>
+                <a href="<?php echo $this->url('document', array('action'=>'list', 'id' => $category->id));?>">
+                <?php echo $this->escapeHtml($category->name);?></td>
+                </a>
+              <td class = "align-center"><?php echo $this->escapeHtml($category->ranking);?></td>
+              <td>
+                <a href="<?php echo $this->url('category', array('action'=>'edit', 'id' => $category->id));?>" class = "btn">modifica</a>
+                <a href="<?php echo $this->url('category', array('action'=>'delete', 'id' => $category->id));?>" class = "btn">elimina</a>
+              </td>
+            </tr>
+        <?php endforeach; ?>
+
+    </table>
+
+<?php } else {  ?>
+
+       <table class="table">
+        <?php foreach ($categories as $category) : ?>
+            <tr>
+              <td>
+                <span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span>&nbsp;
+                <a href="<?php echo $this->url('document', array('action'=>'list', 'id' => $category->id));?>">
+                  <?php echo $this->escapeHtml($category->name);?>
+                </a>
+                &nbsp;
+                <i>(<?php echo $this->escapeHtml($category->docs);?> documenti)</i>
+              </td>
+              <td>
+                  
+              </td>
+            </tr>
+        <?php endforeach; ?>
+
+    </table>
+
+<?php } ?>

@@ -1,0 +1,70 @@
+<?php
+
+use Zend\Session\Container;
+
+$user_session = new Container('user');
+
+$title = 'Documenti';
+$this->headTitle($title);
+?>
+
+<?php if ($user_session->type == 'administrator') { ?>
+
+    <h1><?php echo $this->escapeHtml($title); ?></h1>
+    <p>
+        <a href="<?php echo $this->url('document', array('action'=>'add'));?>">Nuovo documento</a>
+    </p>
+
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Mime</th>
+            <th>Size</th>
+            <th>&nbsp;</th>
+        </tr>
+        <?php foreach ($documents as $document) : ?>
+            <tr>
+              <td><?php echo $this->escapeHtml($document->id);?></td>
+        	    <td><?php echo $this->escapeHtml($document->name);?></td>
+              <td><?php echo $this->escapeHtml($document->mime);?></td>
+              <td><?php echo $this->escapeHtml($document->size);?> byte</td>
+              <td>
+                  <a href="<?php echo $this->url('document',
+                      array('action'=>'edit', 'id' => $document->id));?>">Edit</a>
+                  <a href="<?php echo $this->url('document',
+                      array('action'=>'delete', 'id' => $document->id));?>">Delete</a>
+              </td>
+            </tr>
+        <?php endforeach; ?>
+
+    </table>
+
+<?php } else {  ?>
+
+       <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Mime</th>
+            <th>Size</th>
+            <th>&nbsp;</th>
+        </tr>
+        <?php foreach ($documents as $document) : ?>
+            <tr>
+              <td><?php echo $this->escapeHtml($document->id);?></td>
+              <td><?php echo $this->escapeHtml($document->name);?></td>
+              <td><?php echo $this->escapeHtml($document->mime);?></td>
+              <td><?php echo $this->escapeHtml($document->size);?> byte</td>
+              <td>
+                  <a href="<?php echo $this->url('document', array('action'=>'document', 'id' => $document->id));?>">visualizza</a>
+              </td>
+            </tr>
+            <tr>
+              <td colspan = "5"><div class ="divider-dotted"></div></td>
+            </tr>
+        <?php endforeach; ?>
+
+    </table>
+
+<?php } ?>

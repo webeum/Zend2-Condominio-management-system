@@ -1,0 +1,14 @@
+<?php
+
+$title = 'Invio segnalazione';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<p>
+La segnalazione è stata inviata con successo!
+</p>
+<p>
+    <a href="<?php echo $this->url('request', array('action'=>'index'));?>" class = "btn">ok</a>
+</p>
+

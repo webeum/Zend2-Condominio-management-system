@@ -1,0 +1,95 @@
+<?php
+
+$title = 'Modifica condomino';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url(
+    'condomino',
+    array(
+        'action' => 'edit',
+        'id'     => $this->id,
+    )
+));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id'));
+?>
+
+<div class="form-group">
+	<?php echo $this->formRow($form->get('firstname')); ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('lastname')); ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('email')); ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('pec')); ?>
+</div>
+<div class="form-group">
+	<?php //echo $this->formRow($form->get('username')); ?>
+</div>
+<div class="form-group">
+	<?php //echo $this->formRow($form->get('password')); ?>
+</div>
+<div class="form-group">
+	<?php //echo $this->formRow($form->get('password_verify')); ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('fiscalcode')); ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('adviser')); ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('language_id')); ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('enabled')); ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('condominium')); ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('unit_1')); ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('unit_2')); ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('unit_3')); ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('notice')); ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('request')); ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('bacheca')); ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('creationdate')); ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('modifydate')); ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('activationdate')); ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formRow($form->get('lastaccessdate')); ?>
+</div>
+<div class="form-group">
+	<a class = "btn" href = "javascript:history.back();">annulla</a>
+	<?php echo $this->formSubmit($form->get('submit')); ?>
+</div>
+<?php echo $this->form()->closeTag(); ?>
+
+

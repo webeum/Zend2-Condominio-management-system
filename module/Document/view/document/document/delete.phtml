@@ -1,0 +1,23 @@
+<?php
+
+$title = 'Elimina documento';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<p>Sei sicuro di voler eliminare il documento '<?php echo $this->escapeHtml($document->name); ?>'?
+</p>
+<?php
+$url = $this->url('document', array(
+    'action' => 'delete',
+    'id'     => $this->id,
+));
+?>
+<form action="<?php echo $url; ?>" method="post">
+	<div>
+	    <input type="hidden" name="id" value="<?php echo (int) $document->id; ?>" />
+	    <input type="hidden" name="category_id" value="<?php echo (int) $document->category_id; ?>" />
+	    <input type="submit" name="del" value = "Si" class = "btn" />
+	    <input type="submit" name="del" value = "No" class = "btn" />
+	</div>
+</form>

@@ -1,0 +1,87 @@
+<?php
+
+$title = 'Anagrafica amministratore';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+
+<form class="form-horizontal" role="form">
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label color-label">Ragione sociale</label>
+      <div class="col-sm-10">
+        <?php echo $administrator->companyname; ?>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label color-label">Nome</label>
+      <div class="col-sm-10">
+        <?php echo $administrator->firstname; ?>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label color-label">Cognome</label>
+      <div class="col-sm-10">
+        <?php echo $administrator->lastname; ?>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label color-label">Email</label>
+      <div class="col-sm-10">
+        <?php echo $administrator->email; ?>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label color-label">PEC</label>
+      <div class="col-sm-10">
+        <?php echo $administrator->pec; ?>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label color-label">Telefono</label>
+      <div class="col-sm-10">
+        <?php echo $administrator->telephone; ?>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label color-label">Cellulare</label>
+      <div class="col-sm-10">
+        <?php echo $administrator->mobile; ?>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label color-label">Fax</label>
+      <div class="col-sm-10">
+        <?php echo $administrator->fax; ?>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label color-label">Sito web</label>
+      <div class="col-sm-10">
+        <?php echo $administrator->website; ?>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label color-label">Orario d'ufficio</label>
+      <div class="col-sm-10">
+        <?php echo $administrator->officehours; ?>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label color-label"></label>
+      <div class="col-sm-10">
+        <a href="<?php echo $this->url('administrator', array('action'=>'edit', 'id' => $administrator->id));?>"class = "btn">modifica</a>
+      </div>
+    </div>
+</form>

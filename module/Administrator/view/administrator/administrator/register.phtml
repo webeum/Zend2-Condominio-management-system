@@ -1,0 +1,60 @@
+<?php
+
+$title = 'Registrazione';
+$this->headTitle($title);
+?>
+<div id = "register">
+	<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+	<?php
+	$form = $this->form;
+	$form->setAttribute('action', $this->url('administrator', array('action' => 'register')));
+	$form->prepare();
+
+	echo $this->form()->openTag($form);
+	echo $this->formHidden($form->get('id'));
+	?>
+
+	<div class="form-group">
+		<?php echo $this->formRow($form->get('companyname')); ?>
+	</div>
+	<div class="form-group">
+		<?php echo $this->formRow($form->get('firstname')); ?>
+	</div>
+	<div class="form-group">
+		<?php echo $this->formRow($form->get('lastname')); ?>
+	</div>
+	<div class="form-group">
+		<?php echo $this->formRow($form->get('email')); ?>
+	</div>
+	<div class="form-group">
+		<?php echo $this->formRow($form->get('password')); ?>
+	</div>
+	<div class="form-group">
+		<?php echo $this->formRow($form->get('password_verify')); ?>
+	</div>
+	<div class="form-group">
+		<?php echo $this->formRow($form->get('pec')); ?>
+	</div>
+	<div class="form-group">
+		<?php echo $this->formRow($form->get('telephone')); ?>
+	</div>
+	<div class="form-group">
+		<?php echo $this->formRow($form->get('mobile')); ?>
+	</div>
+	<div class="form-group">
+		<?php echo $this->formRow($form->get('fax')); ?>
+	</div>
+	<div class="form-group">
+		<?php echo $this->formRow($form->get('website')); ?>
+	</div>
+	<div class="form-group">
+		<?php echo $this->formRow($form->get('officehours')); ?>
+	</div>
+	<div class="form-group">
+		<a class = "btn" href = "javascript:history.back();">annulla</a>
+		<?php echo $this->formSubmit($form->get('submit')); ?>
+	</div>
+	<?php echo $this->form()->closeTag(); ?>
+</div>
+

@@ -1,0 +1,14 @@
+<?php
+
+$title = 'Login failed';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<p>
+Credenziali non trovate!
+</p>
+<p>
+    Prego <a href="<?php echo $this->url('administrator', array('action'=>'login'));?>">riprova</a>
+</p>
+
